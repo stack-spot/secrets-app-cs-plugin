@@ -3,19 +3,19 @@ description: Plug-in to consume AWS Secret Manager.
 types:
 - app
 inputs:
-- label: TTL Cache milliseconds:
+- label: TTL Cache ms
   type: text
   name: cache_item_ttl
   default: "3700000"
-- label: Maximum Cache Size:
+- label: Maximum Cache Size
   type: text
   name: max_cache_size
   default: "1024"  
-- label: Version Stage:
+- label: Version Stage
   type: text
   name: version_stage
   default: "AWSCURRENT"    
-- label: Region Endpoint:
+- label: Region Endpoint
   type: text
   name: region_endpoint
   default: "sa-east-1"      
