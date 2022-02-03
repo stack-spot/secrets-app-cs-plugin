@@ -29,8 +29,8 @@ class Plugin(Template):
         using = f"using StackSpot.Secrets;\n"
         service = f"services.AddSecretsManager(configuration, environment)\n"
         
-        put_appsettings(project_name, metadata, 'appsettings.json')
-        put_appsettings(project_name, metadata, 'appsettings.Development.json')   
+        put_appsettings(metadata, project_name, 'appsettings.json')
+        put_appsettings(metadata, project_name, 'appsettings.Development.json')   
 
         os.chdir(f'{metadata.target_path}/src/{project_name}.Domain/')
         subprocess.run(['dotnet', 'add', 'package', 'StackSpot.Secrets'])
