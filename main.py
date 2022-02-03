@@ -27,7 +27,7 @@ class Plugin(Template):
     def post_hook(self, metadata: Metadata):
         project_name = metadata.global_inputs['project_name']
         using = f"using StackSpot.Secrets;\n"
-        service = f"services.AddSecretsManager(configuration, environment)\n"
+        service = f"services.AddSecretsManager(configuration, environment);"
         
         put_appsettings(metadata, project_name, 'appsettings.json')
         put_appsettings(metadata, project_name, 'appsettings.Development.json')   
@@ -42,7 +42,7 @@ class Plugin(Template):
         content = configuration_file.readlines()
         index = [x for x in range(len(content)) if 'return services' in content[x].lower()]
         content[0] = using+content[0]
-        content[index[0]] = f"{service};\n{content[index[0]]}"
+        content[index[0]] = f"{service}\n{content[index[0]]}"
         
         configuration_file = open(file='ConfigurationStackSpot.cs', mode='w')                     
         configuration_file.writelines(content)
