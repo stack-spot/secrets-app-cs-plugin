@@ -3,7 +3,7 @@ description: Plug-in to consume AWS Secret Manager.
 types:
 - app
 inputs:
-- label: TTL Cache (milliseconds):
+- label: TTL Cache milliseconds:
   type: text
   name: cache_item_ttl
   default: "3700000"
