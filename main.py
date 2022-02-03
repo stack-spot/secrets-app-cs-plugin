@@ -13,10 +13,10 @@ def put_appsettings(metadata: Metadata, project_name: str, file_name: str):
             appsettings_json_content = json.load(appsettings_json_file)
             appsettings_json_content.update({
                                                 "SecretsCache": {
-                                                    "CacheItemTTL": metadata.cache_item_ttl,
-                                                    "MaxCacheSize": metadata.max_cache_size,
-                                                    "VersionStage": f"{metadata.version_stage}",
-                                                    "RegionEndpoint": f"{metadata.region_endpoint}"
+                                                    "CacheItemTTL": metadata.inputs['cache_item_ttl'],
+                                                    "MaxCacheSize": metadata.inputs['max_cache_size'],
+                                                    "VersionStage": f"{metadata.inputs['version_stage']}",
+                                                    "RegionEndpoint": f"{metadata.inputs['region_endpoint']}"
                                                 }                
                                             })                                         
             appsettings_json_file.seek(0)
