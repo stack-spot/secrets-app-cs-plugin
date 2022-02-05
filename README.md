@@ -31,7 +31,10 @@ https://github.com/stack-spot/secrets-app-cs-plugin.git
 Os inputs necessários para utilizar o plugin são:
 | **Campo** | **Valor** | **Descrição** |
 | :--- | :--- | :--- |
-| AWS region| Padrão: "us-east-1" | Região da AWS a ser utilizada para configuração do SQS. |
+| CacheItemTTL | Padrão: 3600000 | TTL do cache em milliseconds | 
+| MaxCacheSize | Padrão: 1024 | Quantidade máxima de items a serem cacheados antes de executar o LRU |
+| VersionStage | Padrão: AWSCURRENT | Versão que o cache irá requisitar ao recuperar o segredo do Secrets Manager |
+| RegionEndpoint | Padrão: "us-east-1" | Endpoint regional que será utilizado para requisitar o Secrets Manager |
 
 ### **Exemplo de uso**
 - [**Nuget**](https://www.nuget.org/packages/StackSpot.Secrets/)
