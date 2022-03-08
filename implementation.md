@@ -1,6 +1,4 @@
-## **Implementação**
-
-### **Inputs**
+#### **Inputs**
 - Os inputs necessários para utilizar o plugin são:
 
 | **Campo** | **Valor** | **Descrição** |
@@ -21,13 +19,13 @@ Você pode sobrescrever a configuração padrão do cache adicionando a seção 
     }
 ```
 
-### **Configurações**
+#### **Configurações**
 - Adicione ao seu `IServiceCollection` via `services.AddSecretsManager()` no `Startup` da aplicação ou `Program` tendo como parametro de entrada `IConfiguration` e `IWebHostEnvironment`
 
 ```csharp
     services.AddSecretsManager(Configuration, Env);
 ```
-### **Uso**
+#### **Uso**
 
 - O código abaixo irá retornar uma cópia do seu segredo e armazenará em cache para consultas futuras.
 ```csharp
@@ -55,7 +53,7 @@ Você pode sobrescrever a configuração padrão do cache adicionando a seção 
 ```csharp
     var secret = await ISecretsRepository.GetSecret<T>(secretKey);
 ```
-### **Exceptions**
+#### **Exceptions**
 - `SecretsRepositoryException`, acontece quando:
     - Secret não encontrada, retorna a mensagem `No secret was found for key {secretKey}`.
     - Erro inesperado, retorna a mensagem `An error occurred while getting the secret for key {secretKey}`., contendo a exception do erro.
