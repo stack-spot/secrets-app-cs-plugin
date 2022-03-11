@@ -1,5 +1,5 @@
 name: secrets-app-cs-plugin
-description: Plug-in to consume AWS Secret Manager.
+description: Plug-in para instrumentar o AWS Secret Manager.
 types:
 - app
 inputs:
@@ -20,7 +20,7 @@ inputs:
   name: region_endpoint
   default: "sa-east-1"
 
-displayName: Secrets - Plugin
+displayName: Secrets
 
 picture: "plugin.png"
 
