@@ -65,7 +65,7 @@ Você pode sobrescrever a configuração padrão do cache adicionando a seção 
 * Para o funcionamento local você deve preencher a variável de ambiente `LOCALSTACK_CUSTOM_SERVICE_URL` com o valor da url do serviço. O valor padrão do localstack é http://localhost:4566.
 * Abaixo um exemplo de arquivo `docker-compose` com a criação do contâiner: 
 
-```
+```yaml
 version: '2.1'
 
 services:
@@ -81,6 +81,6 @@ services:
 
 Após a criação do contâiner, crie uma secret para realizar os testes com o componente. Recomendamos que você tenha instalado o [AWS CLI](https://aws.amazon.com/pt/cli/). Abaixo um exemplo de comando para criação de uma secret:
 
-```
+```bash
 aws --endpoint-url=http://localhost:4566 --region=us-east-1 secretsmanager create-secret --name [NOME DA SUA SECRET] --description [DESCRIÇÃO DA SUA SECRET] --secret-string [VALOR DA SUA SECRET] 
 ```
