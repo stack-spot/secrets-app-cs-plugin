@@ -57,3 +57,30 @@ Você pode sobrescrever a configuração padrão do cache adicionando a seção 
 - `SecretsRepositoryException`, acontece quando:
     - Secret não encontrada, retorna a mensagem `No secret was found for key {secretKey}`.
     - Erro inesperado, retorna a mensagem `An error occurred while getting the secret for key {secretKey}`., contendo a exception do erro.
+
+#### 4. Ambiente local
+
+* Esta etapa não é obrigatória.
+* Recomendamos, para o desenvolvimento local, a criação de um contâiner com a imagem do [Localstack](https://github.com/localstack/localstack). 
+* Para o funcionamento local você deve preencher a variável de ambiente `LOCALSTACK_CUSTOM_SERVICE_URL` com o valor da url do serviço. O valor padrão do localstack é http://localhost:4566.
+* Abaixo um exemplo de arquivo `docker-compose` com a criação do contâiner: 
+
+```
+version: '2.1'
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=secretsmanager
+      - AWS_DEFAULT_OUTPUT=json
+      - DEFAULT_REGION=us-east-1
+```
+
+Após a criação do contâiner, crie uma secret para realizar os testes com o componente. Recomendamos que você tenha instalado o [AWS CLI](https://aws.amazon.com/pt/cli/). Abaixo um exemplo de comando para criação de uma secret:
+
+```
+aws --endpoint-url=http://localhost:4566 --region=us-east-1 secretsmanager create-secret --name [NOME DA SUA SECRET] --description [DESCRIÇÃO DA SUA SECRET] --secret-string [VALOR DA SUA SECRET] 
+```
