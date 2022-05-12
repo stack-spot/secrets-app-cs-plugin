@@ -20,7 +20,7 @@ Você pode sobrescrever a configuração padrão do cache adicionando a seção 
 ```
 
 #### **Configurações**
-- Adicione ao seu `IServiceCollection` via `services.AddSecretsManager()` no `Startup` da aplicação ou `Program` tendo como parametro de entrada `IConfiguration` e `IWebHostEnvironment`
+- Adicione ao seu `IServiceCollection` via `services.AddSecretsManager()` no `Startup` da aplicação ou `Program` tendo como parâmetro de entrada `IConfiguration` e `IWebHostEnvironment`
 
 ```csharp
     services.AddSecretsManager(Configuration, Env);
@@ -28,6 +28,7 @@ Você pode sobrescrever a configuração padrão do cache adicionando a seção 
 #### **Uso**
 
 - O código abaixo irá retornar uma cópia do seu segredo e armazenará em cache para consultas futuras.
+
 ```csharp
     [ApiController]
     [Route("[controller]")]
@@ -50,20 +51,21 @@ Você pode sobrescrever a configuração padrão do cache adicionando a seção 
 ```
 
 - Outra alternativa é utilizar a interface `ISecretsRepository` com tratamento de erros e implementar a deserialização do seu segredo.
+
 ```csharp
     var secret = await ISecretsRepository.GetSecret<T>(secretKey);
 ```
 #### **Exceptions**
 - `SecretsRepositoryException`, acontece quando:
-    - Secret não encontrada, retorna a mensagem `No secret was found for key {secretKey}`.
-    - Erro inesperado, retorna a mensagem `An error occurred while getting the secret for key {secretKey}`., contendo a exception do erro.
+    - A Secret não encontrada retorna a mensagem `No secret was found for key {secretKey}`.
+    - Um erro inesperado retorna a mensagem `An error occurred while getting the secret for key {secretKey}`, contendo a exception do erro.
 
 #### 4. Ambiente local
 
-* Esta etapa não é obrigatória.
-* Recomendamos, para o desenvolvimento local, a criação de um contâiner com a imagem do [Localstack](https://github.com/localstack/localstack). 
-* Para o funcionamento local você deve preencher a variável de ambiente `LOCALSTACK_CUSTOM_SERVICE_URL` com o valor da url do serviço. O valor padrão do localstack é http://localhost:4566.
-* Abaixo um exemplo de arquivo `docker-compose` com a criação do contâiner: 
+* Esta não é uma etapa obrigatória;  
+* É recomendado, para o desenvolvimento local, a criação de um container com a imagem do [Localstack](https://github.com/localstack/localstack). 
+* Para o funcionamento local você deve preencher a variável de ambiente `LOCALSTACK_CUSTOM_SERVICE_URL` com o valor da url do serviço. O valor padrão do localstack é http://localhost:4566;  
+* Abaixo um exemplo de arquivo `docker-compose` com a criação do container: 
 
 ```yaml
 version: '2.1'
@@ -79,8 +81,9 @@ services:
       - DEFAULT_REGION=us-east-1
 ```
 
-Após a criação do contâiner, crie uma secret para realizar os testes com o componente. Recomendamos que você tenha instalado o [AWS CLI](https://aws.amazon.com/pt/cli/). Abaixo um exemplo de comando para criação de uma secret:
+Após a criação do container, crie uma secret para realizar os testes com o componente. É recomendado que você tenha instalado o [AWS CLI](https://aws.amazon.com/pt/cli/). Confira um exemplo de comando para criação de uma secret:  
 
-```bash
+```
+bash
 aws --endpoint-url=http://localhost:4566 --region=us-east-1 secretsmanager create-secret --name [NOME DA SUA SECRET] --description [DESCRIÇÃO DA SUA SECRET] --secret-string [VALOR DA SUA SECRET] 
 ```
